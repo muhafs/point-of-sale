@@ -121,7 +121,7 @@
                                 <a href="{{ url('home') }}" class="nav-link {{ Request::is('home') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-home"></i>
                                     <p>
-                                        Home
+                                        Dashboard
                                     </p>
                                 </a>
                             </li>
