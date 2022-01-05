@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -25,3 +26,6 @@ Auth::routes();
 
 // Dashboard Route
 Route::resource('home', DashboardController::class);
+
+// User Route
+Route::resource('users', UserController::class)->except('show');

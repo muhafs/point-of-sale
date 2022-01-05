@@ -118,10 +118,19 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                             data-accordion="false">
                             <li class="nav-item">
-                                <a href="{{ url('home') }}" class="nav-link {{ Request::is('home') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-home"></i>
+                                <a href="{{ url('home') }}" class="nav-link {{ Request::is('home*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-th"></i>
                                     <p>
                                         Dashboard
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('users') }}"
+                                    class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>
+                                        Administrators
                                     </p>
                                 </a>
                             </li>
