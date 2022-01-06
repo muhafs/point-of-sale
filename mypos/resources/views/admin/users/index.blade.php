@@ -3,7 +3,7 @@
 @section('content')
 <div class="card card-primary">
     <div class="card-header">
-        <h3 class="card-title">Administrators Table</h3>
+        <h3 class="card-title">Administrators</h3>
     </div>
     <div class="card-body">
         @if (auth()->user()->hasPermission('users_create'))
@@ -48,10 +48,11 @@
                         @endif
 
                         @if (auth()->user()->hasPermission('users_delete'))
-                        <form action="#" method="post" class="d-inline-block">
+                        <form action="{{ route('users.destroy', $user->id) }}" method="post" class="d-inline-block">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger btn-sm">
+                            <button type="submit" onclick="return confirm('Are you sure?')"
+                                class="btn btn-danger btn-sm">
                                 <i class="fa fa-trash"></i>
                                 Delete
                             </button>
@@ -63,8 +64,10 @@
                 </tr>
                 @endforeach
                 @else
-                <tr colspan="4" class="text-center">
-                    No Users Available.
+                <tr class="text-center">
+                    <td colspan="4">
+                        No Users Available.
+                    </td>
                 </tr>
                 @endif
             </tbody>

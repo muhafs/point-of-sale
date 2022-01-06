@@ -20,12 +20,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Dashboard Route
-Route::resource('home', DashboardController::class)->middleware('auth');
+Route::resource('dashboard', DashboardController::class)->middleware('auth');
 
 // User Route
 Route::resource('users', UserController::class)->except('show')->middleware('auth');
