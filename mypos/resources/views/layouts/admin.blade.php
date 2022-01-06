@@ -125,6 +125,7 @@
                                     </p>
                                 </a>
                             </li>
+                            @if (auth()->user()->hasPermission('users_read'))
                             <li class="nav-item">
                                 <a href="{{ url('users') }}"
                                     class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
@@ -134,6 +135,7 @@
                                     </p>
                                 </a>
                             </li>
+                            @endif
                         </ul>
                     </nav>
                     <!-- Sidebar Menu End -->

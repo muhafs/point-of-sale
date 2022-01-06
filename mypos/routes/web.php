@@ -25,7 +25,7 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Dashboard Route
-Route::resource('home', DashboardController::class);
+Route::resource('home', DashboardController::class)->middleware('auth');
 
 // User Route
-Route::resource('users', UserController::class)->except('show');
+Route::resource('users', UserController::class)->except('show')->middleware('auth');
