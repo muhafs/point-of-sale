@@ -21,12 +21,13 @@
             {{ session('success') }}
         </div>
         @endif
-        <table class="table table-bordered table-hover text-center align-middle">
+        <table class="table table-bordered table-hover text-center">
             <thead>
                 <tr>
                     <th style="width: 10px">#</th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th style="width: 100px;">Image</th>
                     <th style="width: 200px;">Action</th>
                 </tr>
             </thead>
@@ -34,10 +35,12 @@
                 @if ($users->count() > 0)
                 @foreach ($users as $user)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>
+                    <td class="align-middle">{{ $loop->iteration }}</td>
+                    <td class="align-middle">{{ $user->name }}</td>
+                    <td class="align-middle">{{ $user->email }}</td>
+                    <td class="align-middle"><img src="{{ $user->image_path }}" alt="{{ $user->name }}"
+                            style="width: 100px" class="img-thumbnail"></td>
+                    <td class="align-middle">
                         @if (auth()->user()->hasPermission('users_update'))
                         <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info btn-sm">
                             <i class="fa fa-edit"></i>

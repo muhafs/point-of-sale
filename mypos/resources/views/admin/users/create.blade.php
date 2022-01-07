@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form action="{{ route('users.store') }}" method="post">
+            <form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data">
                 <div class="card card-primary">
                     <div class="card-header">
                         <h3 class="card-title">Add Administrator</h3>
@@ -27,6 +27,29 @@
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <div class="form-group">
+                            <label for="image">Image</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    {{-- accept="image/*" type='file' id="imgInp" --}}
+                                    <input type="file" class="custom-file-input @error('image') is-invalid @enderror"
+                                        id="image" name="image" accept="image/*">
+                                    <label class="custom-file-label" for="image">Choose Image</label>
+                                </div>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Upload</span>
+                                </div>
+                            </div>
+                        </div>
+                        @error('image')
+                        <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
+                        <div class="form-group">
+                            <img src="{{ asset('uploads/users/default.png') }}" style="width: 100px;"
+                                class="img-thumbnail" id="thumbnail" />
+                        </div>
+
                         <div class="form-group">
                             <label>Password</label>
                             <input type="password" name="password" placeholder="Enter password"
@@ -93,6 +116,9 @@
                                     </div>
                                 </div>
                             </div>
+                            @error('permissions')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
@@ -108,4 +134,25 @@
     </div>
 </div>
 </div>
+@endsection
+
+@section('js')
+<!-- bs-custom-file-input -->
+<script src="{{ asset('assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+
+<!-- Page specific script -->
+<script>
+    // Input Plugin
+    $(function () {
+        bsCustomFileInput.init();
+    });
+
+    // Thumbnail Preview
+    image.onchange = evt => {
+    const [file] = image.files
+        if (file) {
+            thumbnail.src = URL.createObjectURL(file)
+        }
+    }
+</script>
 @endsection
