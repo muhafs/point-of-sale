@@ -47,11 +47,13 @@ class UserController extends Controller
         $validated['password'] = bcrypt($request->password);
 
         if ($request->image) {
-            //? create instance, the resize the image to a width of 300 and constrain aspect ratio (auto height)
+            //? create instance
             $image = Image::make($request->image);
+            //? resize the image to a width of 300 and constrain aspect ratio (auto height)
             $image->resize(300, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
+            //? save the same file as jpg with default quality
             $image->save('uploads/users/' . $request->image->hashName());
 
             $validated['image'] = $image->basename;

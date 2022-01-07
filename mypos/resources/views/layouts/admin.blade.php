@@ -126,17 +126,6 @@
                                     </p>
                                 </a>
                             </li>
-                            @if (auth()->user()->hasPermission('users_read'))
-                            <li class="nav-item">
-                                <a href="{{ url('users') }}"
-                                    class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-users-cog"></i>
-                                    <p>
-                                        Administrators
-                                    </p>
-                                </a>
-                            </li>
-                            @endif
 
                             @if (auth()->user()->hasPermission('categories_read'))
                             <li class="nav-item">
@@ -145,6 +134,30 @@
                                     <i class="nav-icon fas fa-th"></i>
                                     <p>
                                         Categories
+                                    </p>
+                                </a>
+                            </li>
+                            @endif
+
+                            @if (auth()->user()->hasPermission('products_read'))
+                            <li class="nav-item">
+                                <a href="{{ url('products') }}"
+                                    class="nav-link {{ Request::is('products*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-box"></i>
+                                    <p>
+                                        Products
+                                    </p>
+                                </a>
+                            </li>
+                            @endif
+
+                            @if (auth()->user()->hasPermission('users_read'))
+                            <li class="nav-item">
+                                <a href="{{ url('users') }}"
+                                    class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-users-cog"></i>
+                                    <p>
+                                        Administrators
                                     </p>
                                 </a>
                             </li>

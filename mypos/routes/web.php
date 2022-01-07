@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 
@@ -33,3 +34,6 @@ Route::resource('users', UserController::class)->except('show')->middleware('aut
 
 // Category Route
 Route::resource('categories', CategoryController::class)->except('show')->middleware('auth');
+
+// Product Route
+Route::resource('products', ProductController::class)->except('show')->middleware('auth');
