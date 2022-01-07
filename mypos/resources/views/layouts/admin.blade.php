@@ -120,7 +120,7 @@
                             <li class="nav-item">
                                 <a href="{{ url('dashboard') }}"
                                     class="nav-link {{ Request::is('dashboard*') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-th"></i>
+                                    <i class="nav-icon fas fa-chart-line"></i>
                                     <p>
                                         Dashboard
                                     </p>
@@ -133,6 +133,18 @@
                                     <i class="nav-icon fas fa-users-cog"></i>
                                     <p>
                                         Administrators
+                                    </p>
+                                </a>
+                            </li>
+                            @endif
+
+                            @if (auth()->user()->hasPermission('categories_read'))
+                            <li class="nav-item">
+                                <a href="{{ url('categories') }}"
+                                    class="nav-link {{ Request::is('categories*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>
+                                        Categories
                                     </p>
                                 </a>
                             </li>

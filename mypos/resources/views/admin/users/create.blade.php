@@ -14,7 +14,7 @@
                         <div class="form-group">
                             <label>Name</label>
                             <input type="text" name="name" placeholder="Enter Name"
-                                class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
+                                class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required>
                             @error('name')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                             @enderror
@@ -22,7 +22,7 @@
                         <div class="form-group">
                             <label>Email</label>
                             <input type="email" name="email" placeholder="Enter Email"
-                                class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}">
+                                class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required>
                             @error('email')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                             @enderror
@@ -53,7 +53,7 @@
                         <div class="form-group">
                             <label>Password</label>
                             <input type="password" name="password" placeholder="Enter password"
-                                class="form-control @error('password') is-invalid @enderror">
+                                class="form-control @error('password') is-invalid @enderror" required>
                             @error('password')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                             @enderror
@@ -61,7 +61,7 @@
                         <div class="form-group">
                             <label>Confirm Password</label>
                             <input type="password" name="password_confirmation" placeholder="Confirm password"
-                                class="form-control @error('password_confirmation') is-invalid @enderror">
+                                class="form-control @error('password_confirmation') is-invalid @enderror" required>
                             @error('password_confirmation')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                             @enderror

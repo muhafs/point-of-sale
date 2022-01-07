@@ -16,7 +16,7 @@
                             <label>Name</label>
                             <input type="text" name="name" placeholder="Enter Name"
                                 class="form-control @error('name') is-invalid @enderror"
-                                value="{{ old('name', $user->name) }}">
+                                value="{{ old('name', $user->name) }}" required>
                             @error('name')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                             @enderror
@@ -25,7 +25,7 @@
                             <label>Email</label>
                             <input type="email" name="email" placeholder="Enter Email"
                                 class="form-control @error('email') is-invalid @enderror"
-                                value="{{ old('email', $user->email) }}">
+                                value="{{ old('email', $user->email) }}" required>
                             @error('email')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                             @enderror
@@ -44,6 +44,9 @@
                                 </div>
                             </div>
                         </div>
+                        @error('image')
+                        <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <img src="{{ $user->image_path }}" style="width: 100px;" class="img-thumbnail"
                                 id="thumbnail" />
