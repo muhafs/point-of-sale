@@ -120,7 +120,7 @@
                             <li class="nav-item">
                                 <a href="{{ url('dashboard') }}"
                                     class="nav-link {{ Request::is('dashboard*') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-chart-line"></i>
+                                    <i class="nav-icon fas fa-file-medical-alt"></i>
                                     <p>
                                         Dashboard
                                     </p>
@@ -146,6 +146,18 @@
                                     <i class="nav-icon fas fa-box"></i>
                                     <p>
                                         Products
+                                    </p>
+                                </a>
+                            </li>
+                            @endif
+
+                            @if (auth()->user()->hasPermission('clients_read'))
+                            <li class="nav-item">
+                                <a href="{{ url('clients') }}"
+                                    class="nav-link {{ Request::is('clients*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-id-card"></i>
+                                    <p>
+                                        Clients
                                     </p>
                                 </a>
                             </li>
