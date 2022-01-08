@@ -163,8 +163,22 @@
                             </li>
                             @endif
 
-                            @if (auth()->user()->hasPermission('users_read'))
+                            @if (auth()->user()->hasPermission('orders_read'))
                             <li class="nav-item">
+                                <a href="{{ url('orders') }}"
+                                    class="nav-link {{ Request::is('orders*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-shopping-cart"></i>
+                                    <p>
+                                        Orders
+                                    </p>
+                                </a>
+                            </li>
+                            @endif
+
+                            <li class=" mt-2 border-bottom border-secondary"></li>
+
+                            @if (auth()->user()->hasPermission('users_read'))
+                            <li class="nav-item mt-2">
                                 <a href="{{ url('users') }}"
                                     class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-users-cog"></i>

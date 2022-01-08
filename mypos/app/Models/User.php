@@ -42,7 +42,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getImagePathAttribute() {
+    public function getImagePathAttribute()
+    {
         return asset('uploads/users/' . $this->image);
     }
 }

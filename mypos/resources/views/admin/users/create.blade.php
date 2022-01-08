@@ -14,7 +14,8 @@
                         <div class="form-group">
                             <label>Name</label>
                             <input type="text" name="name" placeholder="Enter Name"
-                                class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required>
+                                class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}"
+                                required>
                             @error('name')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                             @enderror
@@ -22,7 +23,8 @@
                         <div class="form-group">
                             <label>Email</label>
                             <input type="email" name="email" placeholder="Enter Email"
-                                class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required>
+                                class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}"
+                                required>
                             @error('email')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                             @enderror
@@ -73,7 +75,7 @@
 
                                     <h3 class="card-title p-3">Permissions</h3>
                                     @php
-                                    $models = ['users', 'categories', 'products'];
+                                    $models = ['users', 'categories', 'products', 'clients', 'orders'];
                                     $maps = ['create', 'read', 'update', 'delete'];
                                     @endphp
                                     <ul class="nav nav-pills ml-auto p-2">

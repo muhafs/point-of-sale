@@ -28,6 +28,7 @@
                     <th>Name</th>
                     <th>Phone</th>
                     <th>Address</th>
+                    <th style="width: 150px;">Order</th>
                     <th style="width: 200px;">Action</th>
                 </tr>
             </thead>
@@ -39,6 +40,15 @@
                     <td class="align-middle">{{ $client->name }}</td>
                     <td class="align-middle">{{ $client->phone }}</td>
                     <td class="align-middle">{{ $client->address }}</td>
+                    <td class="align-middle">
+                        @if (auth()->user()->hasPermission('orders_create'))
+                        <a href="{{ route('clients.orders.create', $client->id) }}" class="btn btn-primary btn-sm">Add
+                            Orders</a>
+                        @else
+                        <a href="#" class="btn btn-primary btn-sm disabled">Add
+                            Orders</a>
+                        @endif
+                    </td>
                     <td class="align-middle">
                         @if (auth()->user()->hasPermission('clients_update'))
                         <a href="{{ route('clients.edit', $client->id) }}" class="btn btn-info btn-sm">

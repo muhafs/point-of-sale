@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
@@ -39,5 +40,6 @@ Route::resource('categories', CategoryController::class)->except('show')->middle
 // Product Route
 Route::resource('products', ProductController::class)->except('show')->middleware('auth');
 
-// Client Route
+// Client Route & Order Route
 Route::resource('clients', ClientController::class)->except('show')->middleware('auth');
+Route::resource('clients.orders', OrderController::class)->except('show')->middleware('auth');
