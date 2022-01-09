@@ -15,12 +15,21 @@ class ClientSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 3; $i++) {
-            Client::create([
-                'name' => Str::random(5),
-                'phone' => rand(100, 200),
-                'address' => Str::random(10),
-            ]);
-        }
+        $clients = [
+            [
+                'name' => 'Fira',
+                'phone' => '081231231230',
+                'address' => 'Aceh Indonesia',
+            ],
+            [
+                'name' => 'Uwais',
+                'phone' => '081231231231',
+                'address' => 'Madura Indonesia',
+            ],
+        ];
+
+        foreach ($clients as $client) {
+            Client::create($client);
+        };
     }
 }

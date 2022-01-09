@@ -14,12 +14,17 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        Category::create([
-            'name' => 'Beverages',
-        ]);
+        $categories = [
+            [
+                'name' => 'Beverages',
+            ],
+            [
+                'name' => 'Foods',
+            ],
+        ];
 
-        Category::create([
-            'name' => 'Foods',
-        ]);
+        foreach ($categories as $category) {
+            Category::create($category);
+        };
     }
 }
