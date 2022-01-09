@@ -44,7 +44,7 @@
                                                     <a href="" id="product-{{ $product->id }}"
                                                         data-name="{{ $product->name }}" data-id="{{ $product->id }}"
                                                         data-price="{{ $product->sale_price }}"
-                                                        class="btn btn-info btn-sm add-product-btn">
+                                                        class="btn btn-outline-info btn-sm add-product-btn">
                                                         <i class="fas fa-plus"></i>
                                                     </a>
                                                 </td>
@@ -94,7 +94,7 @@
 
                     <div class="card-footer">
                         <h4 class="text-center">Total: <span class="total-price">0</span></h4>
-                        <button class="btn btn-primary w-100 disabled" id="add-order-form-btn">
+                        <button class="btn btn-outline-primary w-100 disabled" id="add-order-form-btn">
                             <i class="fas fa-plus"></i>
                             Add
                         </button>
@@ -158,7 +158,7 @@
             const price = $(this).data('price');
 
             // remove color from add button then make it disable
-            $(this).removeClass('btn-info').addClass('btn-default disabled');
+            $(this).removeClass('btn-outline-info').addClass('btn-default disabled');
 
             // prepare the products data
             const html =
@@ -170,7 +170,7 @@
                 </td>
                 <td class="product-price align-middle">${price}</td>
                 <td class="align-middle">
-                    <button class="btn btn-danger btn-sm remove-product-btn" data-id="${id}">
+                    <button class="btn btn-outline-danger btn-sm remove-product-btn" data-id="${id}">
                         <span class="fa fa-trash"></span>
                     </button>
                 </td>
@@ -201,7 +201,7 @@
             $(this).closest('tr').remove();
 
             // remove (disabled) class from (add product) button and active it again
-            $('#product-' + id).removeClass('btn-default disabled').addClass('btn-info');
+            $('#product-' + id).removeClass('btn-default disabled').addClass('btn-outline-info');
 
             // calculate total price
             calculateTotal();
