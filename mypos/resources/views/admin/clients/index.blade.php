@@ -42,22 +42,21 @@
                     <td class="align-middle">{{ $client->address }}</td>
                     <td class="align-middle">
                         @if (auth()->user()->hasPermission('orders_create'))
-                        <a href="{{ route('clients.orders.create', $client->id) }}"
-                            class="btn btn-outline-primary btn-sm">Add
+                        <a href="{{ route('clients.orders.create', $client->id) }}" class="btn btn-primary btn-sm">Add
                             Orders</a>
                         @else
-                        <a href="#" class="btn btn-outline-primary btn-sm disabled">Add
+                        <a href="#" class="btn btn-primary btn-sm disabled">Add
                             Orders</a>
                         @endif
                     </td>
                     <td class="align-middle">
                         @if (auth()->user()->hasPermission('clients_update'))
-                        <a href="{{ route('clients.edit', $client->id) }}" class="btn btn-outline-info btn-sm">
+                        <a href="{{ route('clients.edit', $client->id) }}" class="btn btn-info btn-sm">
                             <i class="fa fa-edit"></i>
                             Edit
                         </a>
                         @else
-                        <button class="btn btn-outline-info btn-sm disabled"><i class="fa fa-edit"></i> Edit</button>
+                        <button class="btn btn-info btn-sm disabled"><i class="fa fa-edit"></i> Edit</button>
                         @endif
 
                         @if (auth()->user()->hasPermission('clients_delete'))
@@ -65,13 +64,13 @@
                             @csrf
                             @method('delete')
                             <button type="submit" onclick="return confirm('Are you sure?')"
-                                class="btn btn-outline-danger btn-sm">
+                                class="btn btn-danger btn-sm">
                                 <i class="fa fa-trash"></i>
                                 Delete
                             </button>
                         </form>
                         @else
-                        <button class="btn btn-outline-danger btn-sm disabled"><i class="fa fa-trash"></i>
+                        <button class="btn btn-danger btn-sm disabled"><i class="fa fa-trash"></i>
                             Delete</button>
                         @endif
                     </td>

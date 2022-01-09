@@ -39,12 +39,12 @@
                     <td class="align-middle">{{ $category->products->count() }}</td>
                     <td class="align-middle">
                         @if (auth()->user()->hasPermission('categories_update'))
-                        <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-outline-info btn-sm">
+                        <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-info btn-sm">
                             <i class="fa fa-edit"></i>
                             Edit
                         </a>
                         @else
-                        <button class="btn btn-outline-info btn-sm disabled"><i class="fa fa-edit"></i> Edit</button>
+                        <button class="btn btn-info btn-sm disabled"><i class="fa fa-edit"></i> Edit</button>
                         @endif
 
                         @if (auth()->user()->hasPermission('categories_delete'))
@@ -53,13 +53,13 @@
                             @csrf
                             @method('delete')
                             <button type="submit" onclick="return confirm('Are you sure?')"
-                                class="btn btn-outline-danger btn-sm">
+                                class="btn btn-danger btn-sm">
                                 <i class="fa fa-trash"></i>
                                 Delete
                             </button>
                         </form>
                         @else
-                        <button class="btn btn-outline-danger btn-sm disabled"><i class="fa fa-trash"></i>
+                        <button class="btn btn-danger btn-sm disabled"><i class="fa fa-trash"></i>
                             Delete</button>
                         @endif
                     </td>
