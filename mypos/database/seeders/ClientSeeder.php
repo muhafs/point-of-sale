@@ -24,7 +24,12 @@ class ClientSeeder extends Seeder
             [
                 'name' => 'Uwais',
                 'phone' => '081231231231',
-                'address' => 'Madura Indonesia',
+                'address' => 'Makkah Saudi Arabia',
+            ],
+            [
+                'name' => 'Aishah',
+                'phone' => '081231231232',
+                'address' => 'Jeddah Saudi Arabia',
             ],
         ];
 

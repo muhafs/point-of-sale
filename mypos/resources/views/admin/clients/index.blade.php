@@ -42,11 +42,15 @@
                     <td class="align-middle">{{ $client->address }}</td>
                     <td class="align-middle">
                         @if (auth()->user()->hasPermission('orders_create'))
-                        <a href="{{ route('clients.orders.create', $client->id) }}" class="btn btn-primary btn-sm">Add
-                            Orders</a>
+                        <a href="{{ route('clients.orders.create', $client->id) }}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-cart-plus"></i>
+                            Add Orders
+                        </a>
                         @else
-                        <a href="#" class="btn btn-primary btn-sm disabled">Add
-                            Orders</a>
+                        <a href="#" class="btn btn-primary btn-sm disabled">
+                            <i class="fas fa-cart-plus"></i>
+                            Add Orders
+                        </a>
                         @endif
                     </td>
                     <td class="align-middle">

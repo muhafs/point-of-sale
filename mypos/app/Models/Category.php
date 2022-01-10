@@ -12,8 +12,10 @@ class Category extends Model
 
     protected $guarded = ['id'];
 
+    // Relation to Product Table
     public function products()
     {
+        // This Category Has Many Products
         return $this->hasMany(Product::class);
     }
 }

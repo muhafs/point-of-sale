@@ -18,6 +18,7 @@ class Product extends Model
         return asset('uploads/products/' . $this->image);
     }
 
+    // Calculate the Profit of the product
     public function getProfitPercentAttribute()
     {
         //? 100 - 80 = 20$
@@ -28,13 +29,17 @@ class Product extends Model
         return number_format($profit_percent, 2);
     }
 
+    // Relation to Category Table
     public function category()
     {
+        // This Product Belongs to One Category
         return $this->belongsTo(Category::class);
     }
 
+    // Relation to Order Table
     public function orders()
     {
+        // This Product Belongs to Many Orders
         return $this->belongsToMany(Order::class, 'product_order');
     }
 }

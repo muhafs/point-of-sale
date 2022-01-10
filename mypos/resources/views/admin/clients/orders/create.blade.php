@@ -93,9 +93,9 @@
                     </div>
 
                     <div class="card-footer">
-                        <h4 class="text-center">Total: <span class="total-price">0</span></h4>
+                        <h4 class="text-center">Total: SAR. <span class="total-price">0</span></h4>
                         <button class="btn btn-primary w-100 disabled" id="add-order-form-btn">
-                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-cart-plus"></i>
                             Add
                         </button>
                     </div>
@@ -168,7 +168,7 @@
                     <input type="number" name="products[${id}][quantity]" data-price="${price}"
                         class="form-control form-control-sm product-quantity" min="1" value="1">
                 </td>
-                <td class="product-price align-middle">${price}</td>
+                <td class="product-price align-middle">${price.toLocaleString()}</td>
                 <td class="align-middle">
                     <button class="btn btn-danger btn-sm remove-product-btn" data-id="${id}">
                         <span class="fa fa-trash"></span>
@@ -215,7 +215,7 @@
             const unitPrice = parseInt($(this).data('price'))
 
             // get (product ptice), then calculate it with the (product quantity)
-            $(this).closest('tr').find('.product-price').html(quantity * unitPrice);
+            $(this).closest('tr').find('.product-price').html((quantity * unitPrice).toLocaleString());
 
             // calculate the total price
             calculateTotal();
@@ -260,7 +260,7 @@
         });
 
         // insert the total price into the element
-        $('.total-price').html(price);
+        $('.total-price').html(price.toLocaleString());
 
         // when (orders modal) is filled, then do this...
         if (price > 0) {

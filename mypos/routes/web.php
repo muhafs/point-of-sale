@@ -8,6 +8,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Models\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,9 @@ Route::resource('categories', CategoryController::class)->except('show')->middle
 // Product Route
 Route::resource('products', ProductController::class)->except('show')->middleware('auth');
 
-// Client Route & Order Route
+// Client Route & Client Orders Route
 Route::resource('clients', ClientController::class)->except('show')->middleware('auth');
-Route::resource('clients.orders', OrderController::class)->except('show')->middleware('auth');
+Route::resource('clients.orders', App\Http\Controllers\Client\OrderController::class)->except('show')->middleware('auth');
+
+// Order Route
+Route::resource('orders', OrderController::class)->except('show')->middleware('auth');
