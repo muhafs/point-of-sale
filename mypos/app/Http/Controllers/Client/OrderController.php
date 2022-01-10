@@ -39,14 +39,14 @@ class OrderController extends Controller
         $order->products()->attach($request->products);
 
         // Set Total Price
-        $total = 0;
+        $total_price = 0;
         // Set
         foreach ($request->products as $id => $quantity) {
             // Get the Current Product
             $product = Product::findOrFail($id);
 
-            // Insert Current Product's Price into (total) Variable
-            $total += $product->sale_price;
+            // Insert Current Product's Total Price into (total_price) Variable
+            $total_price += $product->sale_price * $quantity['quantity'];
 
             // Decrement the Stock of Current Product
             $product->update([
@@ -56,7 +56,7 @@ class OrderController extends Controller
 
         // Set Total Price of the Order
         $order->update([
-            'total_price' => $total
+            'total_price' => $total_price
         ]);
 
         return redirect('orders')->with('success', 'Order has been added successfully');
