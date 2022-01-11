@@ -82,7 +82,8 @@
                                     Show
                                 </button>
                                 @if (auth()->user()->hasPermission('orders_update'))
-                                <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-info btn-sm">
+                                <a href="{{ route('clients.orders.edit', ['client' => $order->client->id, 'order' => $order->id]) }}"
+                                    class="btn btn-info btn-sm">
                                     <i class="fa fa-edit"></i>
                                     Edit
                                 </a>

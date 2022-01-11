@@ -18,10 +18,10 @@ class OrderController extends Controller
     public function products(Order $order)
     {
         $products = $order->products;
-
         return view('admin.orders.products', compact('products', 'order'));
     }
 
+    //! DESTROY
     public function destroy(Order $order)
     {
         // Increase The product's stock Before Deleting the Order
