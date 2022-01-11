@@ -183,7 +183,7 @@
             calculateTotal();
         });
 
-        // make sure to disable the add products button
+        // make sure to disable the (add product) button
         $('body').on('click', '.disabled', function(e) {
             // prevent (add product) button from any action when it is disabled
             e.preventDefault();
@@ -219,31 +219,6 @@
 
             // calculate the total price
             calculateTotal();
-        });
-
-        //list all order products
-        $('.order-products').on('click', function(e) {
-            e.preventDefault();
-
-            $('#loading').css('display', 'flex');
-
-            var url = $(this).data('url');
-            var method = $(this).data('method');
-            $.ajax({
-                url: url,
-                method: method,
-                success: function(data) {
-                    $('#loading').css('display', 'none');
-                    $('#order-product-list').empty();
-                    $('#order-product-list').append(data);
-                }
-            })
-        });
-
-        // when (print button) is clicked, do thi...
-        $(document).on('click', '.print-btn', function() {
-            // print the orders
-            $('#print-area').printThis();
         });
 
     });

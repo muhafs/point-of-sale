@@ -47,3 +47,4 @@ Route::resource('clients.orders', App\Http\Controllers\Client\OrderController::c
 
 // Order Route
 Route::resource('orders', OrderController::class)->except('show')->middleware('auth');
+Route::get('orders/{order}/products', [OrderController::class, 'products'])->name('orders.products')->middleware('auth');

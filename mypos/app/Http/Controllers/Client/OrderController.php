@@ -36,6 +36,7 @@ class OrderController extends Controller
         // Create an Order
         $order = $client->orders()->create([]);
 
+        // Create Pivot (product_order) with a given values
         $order->products()->attach($request->products);
 
         // Set Total Price
