@@ -11,17 +11,12 @@ use App\Models\Category;
 
 class OrderController extends Controller
 {
-    //! INDEX
-    public function index()
-    {
-        //
-    }
-
     //! CREATE
     public function create(Client $client)
     {
         $categories = Category::with('products')->get();
-        return view('admin.clients.orders.create', compact('client', 'categories'));
+        $orders = $client->orders()->with('products')->get();
+        return view('admin.clients.orders.create', compact('client', 'categories', 'orders'));
     }
 
     //! STORE
@@ -43,7 +38,8 @@ class OrderController extends Controller
     public function edit(Client $client, Order $order)
     {
         $categories = Category::with('products')->get();
-        return view('admin.clients.orders.edit', compact('client', 'categories', 'order'));
+        $orders = $client->orders()->with('products')->get();
+        return view('admin.clients.orders.edit', compact('client', 'categories', 'order', 'orders'));
     }
 
     //! UPDATE

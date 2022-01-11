@@ -141,6 +141,11 @@
 @endsection
 
 @section('js')
+{{-- PrintThis PlugIn CDN --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js"
+    integrity="sha512-d5Jr3NflEZmFDdFHZtxeJtBzk0eB+kkRXWFQqEc1EKmolXjHm2IKCA7kTvXBNjIYzjXfD5XzIjaaErpkZHCkBg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <script>
     $(document).ready(function() {
         //list all order products
@@ -170,9 +175,9 @@
             })
         });
 
-        // when (print button) is clicked, do thi...
+        // when (print button) is clicked, do this...
         $(document).on('click', '.print-btn', function() {
-            // print the orders
+            // print the orders using printThis PlugIn
             $('#print-area').printThis();
         });
     })

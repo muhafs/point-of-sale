@@ -100,44 +100,50 @@
                         </button>
                     </div>
                 </form>
+            </div>
 
-                @if (false)
+            {{-- History Starts --}}
+            @if ($client->orders->count() > 0)
+            <div class="card">
                 <div class="card-header bg-primary">
-                    <h3 class="card-title">
-                        Previous Order
-                        <small>{{ $orders->total() }}</small>
-                    </h3>
+                    <h3 class="card-title">Order History</h3>
                 </div>
 
                 <div class="card-body">
-                    <div id="accordion">
+                    <div id="father">
                         @foreach ($orders as $order)
                         <div class="card card-primary">
+
                             <div class="card-header">
                                 <h4 class="card-title w-100">
                                     <a class="d-block w-100" data-toggle="collapse"
-                                        href="#{{ $order->created_at->format('d-m-Y-s') }}">
-                                        {{ $order->created_at->toFormattedDateString() }}
+                                        href="#{{ $order->created_at->format('D-m-Y-s') }}">
+                                        Ordered in - {{ $order->created_at->toFormattedDateString() }}
                                     </a>
                                 </h4>
                             </div>
 
-                            <div id="{{ $order->created_at->format('d-m-Y-s') }}" class="collapse"
-                                data-parent="#accordion">
+                            <div id="{{ $order->created_at->format('D-m-Y-s') }}" class="collapse"
+                                data-parent="#father">
                                 <div class="card-body">
                                     <ul class="list-group">
                                         @foreach ($order->products as $product)
-                                        <li class="list-group-item">{{ $product->name }}</li>
+                                        <li class="list-group-item d-flex justify-content-between">
+                                            <span>{{ $product->name }}</span>
+                                            <span> {{ number_format($product->sale_price) }}.Riyal / pc</span>
+                                        </li>
                                         @endforeach
                                     </ul>
                                 </div>
                             </div>
+
                         </div>
                         @endforeach
                     </div>
                 </div>
-                @endif
             </div>
+            @endif
+            {{-- History Ends --}}
         </div>
     </div>
 </div>
