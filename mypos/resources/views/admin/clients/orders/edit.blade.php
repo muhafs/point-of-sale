@@ -49,7 +49,7 @@
                                                     <button id="product-{{ $product->id }}"
                                                         data-name="{{ $product->name }}" data-id="{{ $product->id }}"
                                                         data-price="{{ $product->sale_price }}"
-                                                        class="btn {{ in_array($product->id, $order->products->pluck('id')->toArray()) ? 'btn-default disabled' : 'btn-info' }} btn-sm add-product-btn">
+                                                        class="btn {{ in_array($product->id, $order->products->pluck('id')->toArray()) ? 'btn-default disabled' : 'btn-info add-product-btn' }} btn-sm ">
                                                         <i class="fas fa-plus"></i>
                                                     </button>
                                                 </td>
@@ -177,7 +177,7 @@
     $(document).ready(function () {
 
         // when (add product) button clicked do this
-        $('.add-product-btn').on('click', function (e) {
+        $('body').on('click', '.add-product-btn', function (e) {
             // prevent add product button from reloading the page
             e.preventDefault();
 
@@ -187,7 +187,7 @@
             const price = $(this).data('price');
 
             // remove color from add button then make it disable
-            $(this).removeClass('btn-info').addClass('btn-default disabled');
+            $(this).removeClass('btn-info add-product-btn').addClass('btn-default disabled');
 
             // prepare the products data
             const html =
@@ -215,7 +215,7 @@
         // make sure to disable the (add product) button
         $('body').on('click', '.disabled', function(e) {
             // prevent (add product) button from any action when it is disabled
-            e.preventDefault();
+            e.preventDefault()
         });
 
         // when (remove product) button clicked, do this...
@@ -230,7 +230,7 @@
             $(this).closest('tr').remove();
 
             // remove (disabled) class from (add product) button and active it again
-            $('#product-' + id).removeClass('btn-default disabled').addClass('btn-info');
+            $('#product-' + id).removeClass('btn-default disabled').addClass('btn-info add-product-btn');
 
             // calculate total price
             calculateTotal();

@@ -31,7 +31,7 @@ class OrderController extends Controller
         //? Check if the stock is enough
         foreach ($request->products as $index => $product) {
             if ($product['quantity'] > Product::find($index)->stock) {
-                return redirect()->back()->with('fail', 'Oops, it looks the quantity of some product\'s stock is not enough for your order');
+                return redirect()->back()->with('fail', 'Oops, it looks the stock of some product is not enough for your order');
             }
         }
 
@@ -57,15 +57,17 @@ class OrderController extends Controller
             'products' => 'required|array',
         ]);
 
-        //? Delete the Exist Order
-        $this->detachOrder($order);
-
+        // 5 > 125
+        // dd(Product::find(3)->stock);
         //? Check if the stock is enough
         foreach ($request->products as $index => $product) {
             if ($product['quantity'] > Product::find($index)->stock) {
-                return redirect()->back()->with('fail', 'Oops, it looks the quantity of some product\'s stock is not enough for your order');
+                return redirect()->back()->with('fail', 'Oops, it looks the stock of some product is not enough for your order');
             }
         }
+
+        //? Delete the Exist Order
+        $this->detachOrder($order);
 
         //? Create the New Order
         $this->attachOrder($request, $client);
