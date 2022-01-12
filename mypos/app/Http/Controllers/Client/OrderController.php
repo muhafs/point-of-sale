@@ -22,11 +22,18 @@ class OrderController extends Controller
     //! STORE
     public function store(Request $request, Client $client)
     {
-        // dd($request->all());
+        // return Product::find(1)->stock;
         // Validate Request Data
         $request->validate([
             'products' => 'required|array',
         ]);
+
+        //? Check if the stock is enough
+        foreach ($request->products as $index => $product) {
+            if ($product['quantity'] > Product::find($index)->stock) {
+                return redirect()->back()->with('fail', 'Oops, it looks the quantity of some product\'s stock is not enough for your order');
+            }
+        }
 
         //? Create the New Order
         $this->attachOrder($request, $client);
@@ -49,6 +56,13 @@ class OrderController extends Controller
         $request->validate([
             'products' => 'required|array',
         ]);
+
+        //? Check if the stock is enough
+        foreach ($request->products as $index => $product) {
+            if ($product['quantity'] > Product::find($index)->stock) {
+                return redirect()->back()->with('fail', 'Oops, it looks the quantity of some product\'s stock is not enough for your order');
+            }
+        }
 
         //? Delete the Exist Order
         $this->attachOrder($request, $client);

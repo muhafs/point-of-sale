@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="container">
+    @if (session()->has('fail'))
+    <div class="alert alert-danger" role="alert">
+        {{ session('fail') }}
+    </div>
+    @endif
     <div class="row justify-content-between">
         <div class="col-md-6">
             <div class="card">
