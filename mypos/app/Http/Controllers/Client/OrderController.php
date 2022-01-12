@@ -57,6 +57,9 @@ class OrderController extends Controller
             'products' => 'required|array',
         ]);
 
+        //? Delete the Exist Order
+        $this->detachOrder($order);
+
         //? Check if the stock is enough
         foreach ($request->products as $index => $product) {
             if ($product['quantity'] > Product::find($index)->stock) {
@@ -64,11 +67,8 @@ class OrderController extends Controller
             }
         }
 
-        //? Delete the Exist Order
-        $this->attachOrder($request, $client);
-
         //? Create the New Order
-        $this->detachOrder($order);
+        $this->attachOrder($request, $client);
 
         return redirect('orders')->with('success', 'Order has been updated successfully');
     }
