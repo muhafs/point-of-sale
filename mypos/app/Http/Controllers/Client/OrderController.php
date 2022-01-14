@@ -52,18 +52,26 @@ class OrderController extends Controller
     //! UPDATE
     public function update(Request $request, Client $client, Order $order)
     {
-        // return $order->products[0];
+        // return $order->products;
         // Validate Request Data
         $request->validate([
             'products' => 'required|array',
         ]);
 
+        //! this block of code is worked but i'm still trying to understand it (under studying)...
         //? Check if the stock is enough
-        foreach ($request->products as $product_order) { //? Product_id => [quantity => 50]
-            foreach ($order->products as $product_pivot) { //? Product => [stock => 50, pivot => quantity]
-                // is (the quantity of the order) larger than (origin product's stock)?
-                if ($product_order['quantity'] > $product_pivot->stock + $product_pivot->pivot->quantity) {
-                    // if yes, Redirect back with Alert message
+        foreach ($request->products as $product_id => $product_order) {
+            //? if this current order don't have any of new additional products
+            if (!$order->products->find($product_id)) {
+                //? compare the (Current Quantity of Order) to (Original Stock)
+                if ($product_order['quantity'] > Product::find($product_id)->stock) {
+                    //? if the (quantity) is larger than the (original stock), Redirect back with Alert message
+                    return redirect()->back()->with('fail', 'Oops, it looks the stock of some product is not enough for your order');
+                }
+            } else if ($order->products->find($product_id)) {
+                //? compare the (Current Quantity of Order) to (Original Stock + Previous Quantity Order)
+                if ($product_order['quantity'] > Product::find($product_id)->stock + $order->products->find($product_id)->pivot->quantity) {
+                    //? if the (quantity) is larger than the (original stock), Redirect back with Alert message
                     return redirect()->back()->with('fail', 'Oops, it looks the stock of some product is not enough for your order');
                 }
             }
