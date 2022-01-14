@@ -52,21 +52,24 @@ class OrderController extends Controller
     //! UPDATE
     public function update(Request $request, Client $client, Order $order)
     {
+        // return $order->products[0];
         // Validate Request Data
         $request->validate([
             'products' => 'required|array',
         ]);
 
-        // 5 > 125
-        // dd(Product::find(3)->stock);
         //? Check if the stock is enough
-        foreach ($request->products as $index => $product) {
-            if ($product['quantity'] > Product::find($index)->stock) {
-                return redirect()->back()->with('fail', 'Oops, it looks the stock of some product is not enough for your order');
+        foreach ($request->products as $product_order) { //? Product_id => [quantity => 50]
+            foreach ($order->products as $product_pivot) { //? Product => [stock => 50, pivot => quantity]
+                // is (the quantity of the order) larger than (origin product's stock)?
+                if ($product_order['quantity'] > $product_pivot->stock + $product_pivot->pivot->quantity) {
+                    // if yes, Redirect back with Alert message
+                    return redirect()->back()->with('fail', 'Oops, it looks the stock of some product is not enough for your order');
+                }
             }
         }
 
-        //? Delete the Exist Order
+        // //? Delete the Exist Order
         $this->detachOrder($order);
 
         //? Create the New Order
@@ -108,11 +111,12 @@ class OrderController extends Controller
 
     private function detachOrder(Order $order)
     {
-        // Increase The product's stock Before Deleting the Order
+        // Increment The product's stock Before Deleting the Order
         foreach ($order->products as $product) {
+            // Update stock for each product by returning the order's quantity into the stock
             $product->update([
                 'stock' => $product->stock + $product->pivot->quantity,
-            ]);
+            ]); //? 50 (stock) + 50 (quantity) = 100 (stock)
         }
 
         // Delete the order
